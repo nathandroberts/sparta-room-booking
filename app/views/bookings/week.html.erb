@@ -11,7 +11,37 @@
 <h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
-<!--Rooms on a day  -->
+<!--Rooms in a week table -->
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <!-- Separates each day of current week -->
+      <% date_range.each_slice(7) do |week| %>
+        <% week.each do |day| %>
+        <!-- Table inputs created based on weekday -->
+          <th><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
+          <!-- Blank cells created based room array size after the weekday is inputted -->
+          <% (@rooms.size - 1).times do %>
+            <th></th>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Time</th>
+      <!-- Rooms names outputted 7 times, once for each weekday -->
+      <% 7.times do %>
+        <% @rooms.each do |room| %>
+          <th><%= room.name %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<!-- Old table -->
 <table>
   <thead>
     <tr>
