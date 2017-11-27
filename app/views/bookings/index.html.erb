@@ -34,6 +34,8 @@
               <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
                 <% if room.id == booking.room_id && start_date == booking.date %>
                   <%= booking.description %>
+                  <%= link_to 'Edit', edit_booking_path(booking) %>
+                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             <% end %>
           </td>
