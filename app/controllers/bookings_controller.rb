@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @rooms = Room.all
+    @booking = Booking.new
     @timeslots = Timeslot.all
   end
 
@@ -17,6 +18,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @rooms = Room.all
   end
 
   # GET /bookings/1/edit

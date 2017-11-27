@@ -51,7 +51,6 @@
       <th>Starttime</th>
       <th>Endtime</th>
       <th>Description</th>
-      <th>Room</th>
       <th>User</th>
       <th>Room</th>
       <th colspan="3"></th>
@@ -65,7 +64,6 @@
         <td><%= booking.starttime %></td>
         <td><%= booking.endtime %></td>
         <td><%= booking.description %></td>
-        <td><%= booking.room %></td>
         <td><%= booking.user_id %></td>
         <td><%= booking.room_id %></td>
         <td><%= link_to 'Show', booking %></td>
@@ -78,4 +76,7 @@
 
 <br>
 
-<%= link_to 'New Booking', new_booking_path %>
+<%= link_to 'New Booking', '#', id:'form-link' %>
+<div class="booking_form">
+  <%= render 'form', booking: @booking %>
+</div>
