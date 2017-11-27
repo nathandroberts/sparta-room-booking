@@ -1,6 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Bookings</h1>
+<!-- Current date -->
+<% start_date = params.fetch(:start_date, Date.today).to_date %>
+<!-- Array with all days of current week -->
+<% date_range = (start_date.beginning_of_week..start_date.end_of_week) %>
+<!-- Changes start_date value -->
+<%= link_to "Previous", start_date: start_date - 1.day %>
+<%= link_to "Next", start_date: start_date + 1.day %>
+
+
+<h1>Timeslots <%= Date::MONTHNAMES[start_date.month] %>  </h1>
+<p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
+<h1>Bookings</h1>
+<!--Rooms on a day  -->
+<table>
+  <thead>
+    <tr>
+      <td>Monday</td>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <% @rooms.each do |room| %>
+      <th><%= room.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- loop here -->
+    <tr>
+      <td>9am</td>
+    </tr>
+
+  </tbody>
+</table>
 
 <table>
   <thead>
