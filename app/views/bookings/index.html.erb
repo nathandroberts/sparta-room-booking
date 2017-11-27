@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bookings</h1>
 <!-- Current date -->
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
 <!-- Array with all days of current week -->
@@ -31,9 +30,13 @@
         <% time_column = timeslot.time_value.strftime("%H%M") %>
         <td><%= timeslot.time_value.strftime("%H%M") %></td>
         <% @rooms.each do |room| %>
-        <td>
-            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-            <%= booking.description %>
+          <td>
+              <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+                <% if room.id == booking.room_id && start_date == booking.date %>
+                  <%= booking.description %>
+                  <%= link_to 'Edit', edit_booking_path(booking) %>
+                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
             <% end %>
           </td>
         <% end %>
