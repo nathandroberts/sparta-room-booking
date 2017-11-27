@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @rooms = Room.all
+    @timeslots = Timeslot.all
   end
 
   # GET /bookings/1

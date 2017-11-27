@@ -28,9 +28,10 @@
   </thead>
   <tbody>
     <!-- loop here -->
-    <tr>
-      <td>9am</td>
-    </tr>
+    <% @timeslots.each do |timeslot| %>
+    <tr><td><%= timeslot.time_value.strftime("%H%M") %></td></tr>
+    <% end %>
+
 
   </tbody>
 </table>
