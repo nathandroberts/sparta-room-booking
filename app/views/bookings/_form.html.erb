@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :room_id %>
-    <%= form.number_field :room_id, id: :booking_room_id %>
+    <%= collection_select(:booking, :room_id, @rooms, :id, :name) %>
   </div>
 
   <div class="actions">
