@@ -19,14 +19,25 @@
     <tr>
       <th>Time</th>
       <% @rooms.each do |room| %>
-      <th><%= room.name %></th>
+        <th><%= room.name %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
     <!-- loop here -->
     <% @timeslots.each do |timeslot| %>
-    <tr><td><%= timeslot.time_value.strftime("%H%M") %></td></tr>
+      <tr>
+        <!-- Value for time stored in current row -->
+        <% time_column = timeslot.time_value.strftime("%H%M") %>
+        <td><%= timeslot.time_value.strftime("%H%M") %></td>
+        <% @rooms.each do |room| %>
+        <td>
+            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+            <%= booking.description %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
 
 
