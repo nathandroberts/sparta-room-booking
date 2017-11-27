@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+<!-- Current date -->
+<% start_date = params.fetch(:start_date, Date.today).to_date %>
+<!-- Array with all days of current week -->
+<% date_range = (start_date.beginning_of_week..start_date.end_of_week) %>
+<!-- Changes start_date value -->
+<%= link_to "Previous", start_date: date_range.first - 1.week %>
+<%= link_to "Next", start_date: date_range.last + 1.week %>
+
+
+<h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
+<p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
+<h1>Bookings</h1>
+<!--Rooms on a day  -->
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <% @rooms.each do |room| %>
+        <th><%= room.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- loop here -->
+    <% @timeslots.each do |timeslot| %>
+      <tr>
+        <!-- Value for time stored in current row -->
+        <% time_column = timeslot.time_value.strftime("%H%M") %>
+        <td><%= timeslot.time_value.strftime("%H%M") %></td>
+        <% @rooms.each do |room| %>
+          <td>
+              <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+                <% if room.id == booking.room_id && start_date == booking.date %>
+                  <%= booking.description %>
+                  <%= link_to 'Edit', edit_booking_path(booking) %>
+                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+
+
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Starttime</th>
+      <th>Endtime</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Room</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.date %></td>
+        <td><%= booking.starttime %></td>
+        <td><%= booking.endtime %></td>
+        <td><%= booking.description %></td>
+        <td><%= booking.user_id %></td>
+        <td><%= booking.room_id %></td>
+        <td><%= link_to 'Show', booking %></td>
+        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<div class="showForm">
+  <%= link_to 'New Booking', new_booking_path %>
+  <%= render 'form', booking: @booking %>
+</div>
