@@ -15,14 +15,13 @@
 <table>
   <thead>
     <tr>
-      <th></th>
       <!-- Separates each day of current week -->
       <% date_range.each_slice(7) do |week| %>
         <% week.each do |day| %>
         <!-- Table inputs created based on weekday -->
           <th><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
           <!-- Blank cells created based room array size after the weekday is inputted -->
-          <% (@rooms.size - 1).times do %>
+          <% (@rooms.size).times do %>
             <th></th>
           <% end %>
         <% end %>
@@ -31,47 +30,39 @@
   </thead>
   <tbody>
     <tr>
-      <th>Time</th>
       <!-- Rooms names outputted 7 times, once for each weekday -->
       <% 7.times do %>
+        <th>Time</th>
         <% @rooms.each do |room| %>
           <th><%= room.name %></th>
         <% end %>
       <% end %>
     </tr>
-  </tbody>
-</table>
-<!-- Old table -->
-<table>
-  <thead>
-    <tr>
-      <th>Time</th>
-      <% @rooms.each do |room| %>
-        <th><%= room.name %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- loop here -->
+    <!-- Loop for Timeslot time_values created in seed file  -->
     <% @timeslots.each do |timeslot| %>
       <tr>
-        <!-- Value for time stored in current row -->
-        <% time_column = timeslot.time_value.strftime("%H%M") %>
-        <td><%= timeslot.time_value.strftime("%H%M") %></td>
-        <% @rooms.each do |room| %>
-          <td>
+        <% 7.times do %>
+          <!-- Value for time stored in current row -->
+          <% time_column = timeslot.time_value.strftime("%H%M") %>
+          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
+          <td><%= timeslot.time_value.strftime("%H%M") %></td>
+          <!-- Loops through each of the rooms to create a blank table cell -->
+          <% @rooms.each do |room| %>
+            <td>
+              <!-- Selects bookings where booking starttime matches the time_column value -->
               <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+                <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
                 <% if room.id == booking.room_id && start_date == booking.date %>
                   <%= booking.description %>
                   <%= link_to 'Edit', edit_booking_path(booking) %>
                   <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
+            </td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
-
 
   </tbody>
 </table>
