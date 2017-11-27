@@ -17,6 +17,7 @@ r8 = Room.create(name: 'Room8', color: 'Grey')
 r9 = Room.create(name: 'Room9', color: 'Yellow')
 
 b1 = Booking.create(date:"2017-11-27", starttime: "08:00", endtime: "09:00",description: "Test",user_id: 1, room_id: 1)
+b2 = Booking.create(date:"2017-11-27", starttime: "10:00", endtime: "12:00",description: "Test2",user_id: 1, room_id: 6)
 
 t1 = Timeslot.create(time_value: "07:00")
 t2 = Timeslot.create(time_value: "07:15")

@@ -31,9 +31,11 @@
         <% time_column = timeslot.time_value.strftime("%H%M") %>
         <td><%= timeslot.time_value.strftime("%H%M") %></td>
         <% @rooms.each do |room| %>
-        <td>
-            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-            <%= booking.description %>
+          <td>
+              <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+                <% if room.id == booking.room_id  %>
+                  <%= booking.description %>
+              <% end %>
             <% end %>
           </td>
         <% end %>
