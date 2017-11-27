@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# room1 = Room.create( name: "Room 1",color: "blue")
-#
-# bookings = Booking.create([{ date: "2017-11-27", starttime: "9:00:00", endtime: "10:00:00", description: "First booking", room: "Room 1", room_id:room1.id}])
-
-# { name: "Room 2",color: "blue"}, { name: "Room 3",color: "blue"}, { name: "Room 4",color: "blue"}])
+r1 = Room.create(name: 'Room1', color: 'Blue')
+r2 = Room.create(name: 'Room2', color: 'Green')
+r3 = Room.create(name: 'Room3', color: 'red')
+r4 = Room.create(name: 'Room4', color: 'orange')
+r5 = Room.create(name: 'Room5', color: 'Purple')
+r6 = Room.create(name: 'Room6', color: 'Grey')
+r7 = Room.create(name: 'Room7', color: 'Pink')
+r8 = Room.create(name: 'Room8', color: 'Grey')
+r9 = Room.create(name: 'Room9', color: 'Yellow')
