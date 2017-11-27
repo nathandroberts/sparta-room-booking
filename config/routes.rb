@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :bookings
   devise_for :users
   root to: "public#index"
