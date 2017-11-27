@@ -33,7 +33,7 @@
         <% @rooms.each do |room| %>
           <td>
               <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-                <% if room.id == booking.room_id  %>
+                <% if room.id == booking.room_id && start_date == booking.date %>
                   <%= booking.description %>
               <% end %>
             <% end %>
