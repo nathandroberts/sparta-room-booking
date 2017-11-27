@@ -10,15 +10,12 @@
 <%= link_to "Next", start_date: start_date + 1.day %>
 
 
-<h1>Timeslots <%= Date::MONTHNAMES[start_date.month] %>  </h1>
+<h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
 <!--Rooms on a day  -->
 <table>
   <thead>
-    <tr>
-      <td>Monday</td>
-    </tr>
     <tr>
       <th>Time</th>
       <% @rooms.each do |room| %>
