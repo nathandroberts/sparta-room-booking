@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 <!-- Current date -->
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
+<!-- Used to reset start date to current date. -->
+<% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Array with all days of current week -->
 <% date_range = (start_date.beginning_of_week..start_date.end_of_week) %>
 <!-- Changes start_date value -->
-<%= link_to "Previous", start_date: date_range.first - 1.week %>
-<%= link_to "Next", start_date: date_range.last + 1.week %>
+<%= link_to "Previous week|", start_date: date_range.first - 1.week %>
+<%= link_to " Current date |", start_date: current_date %>
+<%= link_to "Next week", start_date: date_range.last + 1.week %>
 
 <h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
