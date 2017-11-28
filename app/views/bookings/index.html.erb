@@ -46,7 +46,12 @@
               <%# if room.id == booking.room_id && (booking.starttime.strftime("%H%M") == time_column || booking.endtime.strftime("%H%M") == time_column) %>
               <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date) %>
 
+              <div style="background-color: <%= booking.color %>;">
                 <%= booking.description %>
+                <%= booking.color %>
+
+              </div>
+
                 <%= link_to 'Edit', edit_booking_path(booking) %>
                 <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
