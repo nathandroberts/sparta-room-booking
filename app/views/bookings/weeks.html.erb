@@ -14,7 +14,7 @@
 <p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
 <!--Rooms in a week table -->
-<table class="table">
+<table class="table table-bordered table-inverse">
   <thead>
     <tr>
       <!-- Separates each day of current week -->
@@ -182,7 +182,9 @@
 </table>
 
 <br>
-<div class="showForm">
-  <%= link_to 'New Booking', new_booking_path %>
-  <%= render 'form', booking: @booking %>
-</div>
+<nav class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container footer">
+    <%= link_to 'New Booking', new_booking_path %>
+    <%= render 'form', booking: @booking %>
+  </div>
+</nav>
