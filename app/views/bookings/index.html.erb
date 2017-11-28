@@ -33,13 +33,20 @@
         <% @rooms.each do |room| %>
           <td>
             <!-- Selects bookings where booking starttime matches the time_column value -->
-            <% @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column }.each do |booking| %>
+            <%#  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+            <% @bookings.each do |booking|  %>
+            <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
+            <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
+            <% middle_time = {} %>
+            <%# time_range = (time.parse(booking.endtime) - time.parse(booking.starttime))  %>
               <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
-                <% if room.id == booking.room_id && start_date == booking.date %>
-                  <%= booking.description %>
-                  <%= link_to 'Edit', edit_booking_path(booking) %>
-                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% end %>
+              <%# if room.id == booking.room_id && (booking.starttime.strftime("%H%M") == time_column || booking.endtime.strftime("%H%M") == time_column) %>
+              <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id)%>
+
+                <%= booking.description %>
+                <%= link_to 'Edit', edit_booking_path(booking) %>
+                <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
             <% end %>
           </td>
         <% end %>
