@@ -108,7 +108,7 @@
                 <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[2] == booking.date) %>
                   <div style="background-color: <%= booking.color %>;">
                     <%= link_to 'Edit', edit_booking_path(booking) %>
-                    <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %><br>
                   </div>
                   <%= booking.description %>
                 <% end %>
