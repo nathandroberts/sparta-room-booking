@@ -17,7 +17,7 @@ r8 = Room.create(name: 'Room8', color: 'Grey')
 r9 = Room.create(name: 'Room9', color: 'Yellow')
 
 b1 = Booking.create(date:"2017-11-27", starttime: "08:00", endtime: "09:00",description: "Engineering 4",color: "lightskyblue",user_id: 1, room_id: 1)
-b1 = Booking.create(date:"2017-11-27", starttime: "08:00", endtime: "10:00",description: "Engineering 4",color: "cornflowerblue",user_id: 1, room_id: 4)
+b1 = Booking.create(date:"2017-11-27", starttime: "08:00", endtime: "10:00",description: "Engineering 3",color: "cornflowerblue",user_id: 1, room_id: 4)
 b2 = Booking.create(date:"2017-11-27", starttime: "7:00", endtime: "12:15",description: "Dev Ops",color: "royalblue",user_id: 1, room_id: 5)
 b2 = Booking.create(date:"2017-11-28", starttime: "7:30", endtime: "12:15",description: "Dev Ops",color: "gold",user_id: 1, room_id: 8)
 b2 = Booking.create(date:"2017-11-29", starttime: "8:30", endtime: "16:56",description: "Client",color: "lime",user_id: 1, room_id: 4)
