@@ -37,11 +37,6 @@
   </div>
   
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :booking_user_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :room_id %>
     <%= collection_select(:booking, :room_id, @rooms, :id, :name) %>
   </div>
