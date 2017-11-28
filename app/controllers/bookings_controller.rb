@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   def show
   end
+
   def weeks
     @bookings = Booking.all
     @booking = Booking.new
@@ -82,6 +83,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :starttime, :endtime, :description, :room, :user_id, :room_id)
+      params.require(:booking).permit(:date, :starttime, :endtime, :description, :room, :user_id, :room_id, :color)
     end
 end
