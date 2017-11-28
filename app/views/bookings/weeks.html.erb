@@ -6,9 +6,9 @@
 <!-- Array with all days of current week -->
 <% date_range = (start_date.beginning_of_week..start_date.end_of_week) %>
 <!-- Changes start_date value -->
-<%= link_to "Previous week|", start_date: date_range.first - 1.week %>
+<%= link_to "Previous |", start_date: date_range.first - 1.week %>
 <%= link_to " Current date |", start_date: current_date %>
-<%= link_to "Next week", start_date: date_range.last + 1.week %>
+<%= link_to "Next", start_date: date_range.last + 1.week %>
 
 <h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
@@ -44,19 +44,26 @@
     <% @timeslots.each do |timeslot| %>
       <tr>
         <% date_range.each_slice(7) do |week| %>
-          <!-- Value for time stored in current row -->
+        <!-- Value for time stored in current row -->
           <% time_column = timeslot.time_value.strftime("%H%M") %>
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
+        <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
           <td><%= timeslot.time_value.strftime("%H%M") %></td>
-          <!-- Loops through each of the rooms to create a blank table cell -->
+        <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
-              <!-- Selects bookings where booking starttime matches the time_column value -->
-              <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>                <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date for Monday -->
-                <% if room.id == booking.room_id && week[0] == booking.date %>
+              <!-- Loops through bookings -->
+              <% @bookings.each do |booking|  %>
+                <!-- Booking start time -->
+                <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
+                <!-- Booking end time-->
+                <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
+                <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
+                <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[0] == booking.date) %>
+                  <div style="background-color: <%= booking.color %>;">
+                    <%= link_to 'Edit', edit_booking_path(booking) %>
+                    <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
                   <%= booking.description %>
-                  <%= link_to 'Edit', edit_booking_path(booking) %>
-                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               <% end %>
             </td>
