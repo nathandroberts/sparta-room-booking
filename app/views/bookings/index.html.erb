@@ -57,7 +57,9 @@
 
 
 <br>
-<div class="showForm">
-  <%= link_to 'New Booking', new_booking_path %>
-  <%= render 'form', booking: @booking %>
-</div>
+<nav class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container footer">
+    <%= link_to 'New Booking', new_booking_path %>
+    <%= render 'form', booking: @booking %>
+  </div>
+</nav>
