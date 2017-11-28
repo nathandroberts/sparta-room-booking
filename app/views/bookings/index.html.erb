@@ -33,9 +33,10 @@
         <% @rooms.each do |room| %>
           <td>
             <!-- Selects bookings where booking starttime matches the time_column value -->
-            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+            <%#  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+            <% @bookings.each do |booking|  %>
               <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
-              <% if room.id == booking.room_id && start_date == booking.date %>
+              <% if room.id == booking.room_id && (booking.starttime.strftime("%H%M") == time_column || booking.endtime.strftime("%H%M") == time_column) %>
                 <%= booking.description %>
                 <%= link_to 'Edit', edit_booking_path(booking) %>
                 <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
