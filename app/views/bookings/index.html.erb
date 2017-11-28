@@ -2,9 +2,12 @@
 
 <!-- Current date -->
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
+<!-- Used to reset start date to current date. -->
+<% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Changes start_date value -->
-<%= link_to "Previous", start_date: start_date - 1.day %>
-<%= link_to "Next", start_date: start_date + 1.day %>
+<%= link_to "Previous |", start_date: start_date - 1.day %>
+<%= link_to " Current date |", start_date: current_date %>
+<%= link_to " Next", start_date: start_date + 1.day %>
 
 <!-- Date shown based on start_date -->
 <h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
@@ -62,7 +65,9 @@
 
 
 <br>
-<div class="showForm">
-  <%= link_to 'New Booking', new_booking_path %>
-  <%= render 'form', booking: @booking %>
-</div>
+<nav class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container footer">
+    <%= link_to 'New Booking', new_booking_path %>
+    <%= render 'form', booking: @booking %>
+  </div>
+</nav>
