@@ -4,6 +4,8 @@
 .footer {
   height: 400px;
   margin:auto;
+  background-color: #01181b
+
 }
 div.navbar-nav {
   margin-top: 16px;
@@ -13,4 +15,15 @@ div.navbar-nav {
 }
 .navbar-brand {
   color:white;
+}
+
+.field {
+  color: gray;
+  text-align: center;
+
+}
+
+.actions {
+  border-radius: 10px;
+  text-align: center;
 }
