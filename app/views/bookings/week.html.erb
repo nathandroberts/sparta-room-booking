@@ -7,7 +7,6 @@
 <%= link_to "Previous", start_date: date_range.first - 1.week %>
 <%= link_to "Next", start_date: date_range.last + 1.week %>
 
-
 <h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
@@ -40,28 +39,29 @@
     </tr>
     <!-- Loop for Timeslot time_values created in seed file  -->
     <% @timeslots.each do |timeslot| %>
-      <tr>
-        <% 7.times do %>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
           <!-- Value for time stored in current row -->
           <% time_column = timeslot.time_value.strftime("%H%M") %>
           <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
+          <!-- Monday -->
           <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
               <!-- Selects bookings where booking starttime matches the time_column value -->
               <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-                <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
-                <% if room.id == booking.room_id && start_date == booking.date %>
+                <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date for Monday -->
+                <% if room.id == booking.room_id && week[0] == booking.date %>
                   <%= booking.description %>
                   <%= link_to 'Edit', edit_booking_path(booking) %>
                   <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
               <% end %>
-            </td>
-          <% end %>
+              </td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
     <% end %>
 
   </tbody>
