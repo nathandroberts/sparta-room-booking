@@ -2,13 +2,11 @@
 
 <!-- Current date -->
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
-<!-- Array with all days of current week -->
-<% date_range = (start_date.beginning_of_week..start_date.end_of_week) %>
 <!-- Changes start_date value -->
 <%= link_to "Previous", start_date: start_date - 1.day %>
 <%= link_to "Next", start_date: start_date + 1.day %>
 
-
+<!-- Date shown based on start_date -->
 <h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
@@ -17,65 +15,39 @@
   <thead>
     <tr>
       <th>Time</th>
+      <!-- Loop for each room's name to be inputted into table -->
       <% @rooms.each do |room| %>
         <th><%= room.name %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <!-- loop here -->
+    <!-- Loop for Timeslot time_values created in seed file  -->
     <% @timeslots.each do |timeslot| %>
       <tr>
         <!-- Value for time stored in current row -->
         <% time_column = timeslot.time_value.strftime("%H%M") %>
+        <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
         <td><%= timeslot.time_value.strftime("%H%M") %></td>
+        <!-- Loops through each of the rooms to create a blank table cell -->
         <% @rooms.each do |room| %>
           <td>
-              <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-                <% if room.id == booking.room_id && start_date == booking.date %>
-                  <%= booking.description %>
-                  <%= link_to 'Edit', edit_booking_path(booking) %>
-                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <!-- Selects bookings where booking starttime matches the time_column value -->
+            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
+              <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
+              <% if room.id == booking.room_id && start_date == booking.date %>
+                <%= booking.description %>
+                <%= link_to 'Edit', edit_booking_path(booking) %>
+                <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             <% end %>
           </td>
         <% end %>
       </tr>
     <% end %>
-
-
   </tbody>
 </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Starttime</th>
-      <th>Endtime</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Room</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.date %></td>
-        <td><%= booking.starttime %></td>
-        <td><%= booking.endtime %></td>
-        <td><%= booking.description %></td>
-        <td><%= booking.user_id %></td>
-        <td><%= booking.room_id %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 <div class="showForm">

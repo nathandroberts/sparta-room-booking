@@ -15,7 +15,13 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   def show
   end
-
+  def weeks
+    @bookings = Booking.all
+    @booking = Booking.new
+    @rooms = Room.all
+    @rooms = Room.all
+    @timeslots = Timeslot.all
+  end
   # GET /bookings/new
   def new
     @booking = Booking.new
