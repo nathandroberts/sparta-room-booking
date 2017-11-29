@@ -47,10 +47,10 @@
               <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
               <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date) %>
                 <div style="background-color: <%= booking.color %>;">
+                  <%= booking.description %>
                   <%= link_to 'Edit', edit_booking_path(booking) %>
                   <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
-                <%= booking.description %>
               <% end %>
             <% end %>
           </td>
