@@ -19,7 +19,7 @@
 <table class="table table-bordered table-inverse">
   <thead>
   <tr>
-    <th style="width: 150px;">Time</th>
+    <th style="width: 93px;">Time</th>
     <!-- Loop for each room's name to be inputted into table -->
     <% @rooms.each do |room| %>
     <th><%= room.name %></th>
@@ -32,7 +32,16 @@
 
   <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!--Rooms on a day  -->
-<table class="table table-bordered table-inverse">
+<table class="table table-bordered table-inverse week_table">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <!-- Loop for each room's name to be inputted into table -->
+      <% @rooms.each do |room| %>
+        <th><%= room.name %></th>
+      <% end %>
+    </tr>
+  </thead>
   <tbody>
     <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
     <% @timeslots.each do |timeslot| %>
@@ -52,10 +61,15 @@
               <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
               <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
               <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date) %>
-                <div style="background-color: <%= booking.color %>;">
-                  <%= booking.description %>
-                  <%= link_to 'Edit', edit_booking_path(booking) %>
-                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <div class="booking_block text-center"style="background-color: <%= booking.color %>;">
+                  <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
+                  <div class="booking_description">
+                    <h5>Booking |<%= link_to 'Edit', edit_booking_path(booking) %> |<%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></h5>
+                    <p><%= booking.description %> test</p>
+                  </div>
+                  <% end %>
+
+
                 </div>
               <% end %>
             <% end %>

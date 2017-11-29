@@ -22,6 +22,22 @@ div.navbar-nav {
 .day_button {
   margin-top: 70px;
 }
+.week_table{
+  table-layout: fixed;
+}
+td {
+  width: 2%;
+}
+.booking_block {
+  margin: -8px;
+  padding: inherit;
+  padding-bottom: 26px;
+}
+.booking_description {
+  margin: auto;
+  max-width: 100px;
+  background-color: white;
+}
 
 .stick {
   position: fixed;
