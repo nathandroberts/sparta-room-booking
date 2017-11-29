@@ -11,23 +11,28 @@
     <%= link_to " Current date |", start_date: current_date %>
     <%= link_to " Next", start_date: start_date + 1.day %>
   </div>
-</div>
   <!-- Date shown based on start_date -->
   <h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
   <p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
   <h1>Bookings</h1>
 
-<!--Rooms on a day  -->
 <table class="table table-bordered table-inverse">
   <thead>
-    <tr>
-      <th>Time</th>
-      <!-- Loop for each room's name to be inputted into table -->
-      <% @rooms.each do |room| %>
-        <th><%= room.name %></th>
-      <% end %>
-    </tr>
-  </thead>
+  <tr>
+    <th style="width: 150px;">Time</th>
+    <!-- Loop for each room's name to be inputted into table -->
+    <% @rooms.each do |room| %>
+    <th><%= room.name %></th>
+    <% end %>
+  </tr>
+</thead>
+</table>
+</div>
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+<!--Rooms on a day  -->
+<table class="table table-bordered table-inverse">
   <tbody>
     <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
     <% @timeslots.each do |timeslot| %>
