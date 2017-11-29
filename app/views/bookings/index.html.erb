@@ -5,17 +5,18 @@
 <!-- Used to reset start date to current date. -->
 <% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Changes start_date value -->
-
-<div class="day_button">
-  <%= link_to "Previous |", start_date: start_date - 1.day %>
-  <%= link_to " Current date |", start_date: current_date %>
-  <%= link_to " Next", start_date: start_date + 1.day %>
+<div class="stick">
+  <div class="day_button">
+    <%= link_to "Previous |", start_date: start_date - 1.day %>
+    <%= link_to " Current date |", start_date: current_date %>
+    <%= link_to " Next", start_date: start_date + 1.day %>
+  </div>
 </div>
+  <!-- Date shown based on start_date -->
+  <h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
+  <p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
+  <h1>Bookings</h1>
 
-<!-- Date shown based on start_date -->
-<h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
-<p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
-<h1>Bookings</h1>
 <!--Rooms on a day  -->
 <table class="table table-bordered table-inverse">
   <thead>
