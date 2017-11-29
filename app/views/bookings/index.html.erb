@@ -2,16 +2,22 @@
 
 <!-- Current date -->
 <% start_date = params.fetch(:start_date, Date.today).to_date %>
+<!-- Used to reset start date to current date. -->
+<% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Changes start_date value -->
-<%= link_to "Previous", start_date: start_date - 1.day %>
-<%= link_to "Next", start_date: start_date + 1.day %>
+
+<div class="day_button">
+  <%= link_to "Previous |", start_date: start_date - 1.day %>
+  <%= link_to " Current date |", start_date: current_date %>
+  <%= link_to " Next", start_date: start_date + 1.day %>
+</div>
 
 <!-- Date shown based on start_date -->
-<h1>Month <%= Date::MONTHNAMES[start_date.month] %>  </h1>
+<h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
 <p>Date shown currently <%= start_date.day %>/<%= start_date.month %>/<%= start_date.year %></p>
 <h1>Bookings</h1>
 <!--Rooms on a day  -->
-<table>
+<table class="table table-bordered table-inverse">
   <thead>
     <tr>
       <th>Time</th>
@@ -22,7 +28,7 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Loop for Timeslot time_values created in seed file  -->
+    <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
     <% @timeslots.each do |timeslot| %>
       <tr>
         <!-- Value for time stored in current row -->
@@ -32,13 +38,19 @@
         <!-- Loops through each of the rooms to create a blank table cell -->
         <% @rooms.each do |room| %>
           <td>
-            <!-- Selects bookings where booking starttime matches the time_column value -->
-            <%  @bookings.select{ |b| b.starttime.strftime("%H%M") == time_column}.each do |booking| %>
-              <!-- Only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
-              <% if room.id == booking.room_id && start_date == booking.date %>
+            <!-- Loops through bookings -->
+            <% @bookings.each do |booking|  %>
+              <!-- Booking start time -->
+              <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
+              <!-- Booking end time-->
+              <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
+              <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
+              <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date) %>
+                <div style="background-color: <%= booking.color %>;">
+                  <%= link_to 'Edit', edit_booking_path(booking) %>
+                  <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
                 <%= booking.description %>
-                <%= link_to 'Edit', edit_booking_path(booking) %>
-                <%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
             <% end %>
           </td>
@@ -50,7 +62,9 @@
 
 
 <br>
-<%= link_to 'New Booking', '#', id:'form-link' %>
-<div class="booking_form">
-  <%= render 'form', booking: @booking %>
-</div>
+<nav class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container-fluid footer">
+    <%= link_to 'New Booking', new_booking_path %>
+    <%= render 'form', booking: @booking %>
+  </div>
+</nav>

@@ -1,3 +1,21 @@
 // Place all the styles related to the bookings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.footer {
+  height: 400px;
+  margin:auto;
+  background-color: #01181b
+
+}
+div.navbar-nav {
+  margin-top: 16px;
+}
+.navbar {
+  background-color:#01181b;
+}
+.navbar-brand {
+  color:white;
+}
+.actions {
+  border-radius: 10px;
+}
