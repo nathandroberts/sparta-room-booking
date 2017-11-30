@@ -10,13 +10,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <% if user_signed_in? %>
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded  navbar-fixed-top">
       <a class="navbar-brand nav-item" href="#">
         <img src="/sparta_logo.svg" width="30" height="30" class="d-inline-block align-top sparta_logo" alt="">
       </a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <% if user_signed_in? %>
           <div class="navbar-link">
             <span class="glyphicon glyphicon-th-list" style="color:white"></span> <%= link_to 'Bookings for day |', bookings_path, :class => 'navbar-link' %>
             <span class="glyphicon glyphicon-calendar" style="color:white"></span> <%= link_to ' Bookings for week |', weeks_path, :class => 'navbar-link' %>
