@@ -5,7 +5,9 @@
   height: 400px;
   margin:auto;
   background-color: #01181b
-
+}
+.container {
+  width: 1345px;
 }
 div.navbar-nav {
   margin-top: 16px;
@@ -28,6 +30,28 @@ div.navbar-nav {
 td {
   width: 2%;
 }
+#first_table {
+  padding-right: 0;
+}
+#second_table {
+  padding-left: 0;
+}
+.time_container {
+  width:10px;
+  display: inline-block;
+  margin:0;
+}
+.time_table {
+  width:10px;
+  margin:0;
+}
+.time {
+  height:51px;
+}
+.second_table {
+  display: inline-block;
+  margin:0;
+}
 .booking_block {
   margin: -8px;
   padding: inherit;
@@ -40,5 +64,4 @@ td {
   background-color: white;
   opacity: 0.9;
   overflow: hidden;
-
 }
