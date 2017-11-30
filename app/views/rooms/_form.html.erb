@@ -18,9 +18,16 @@
 
   <div class="field">
     <%= form.label :color %>
-    <%= form.text_field :color, id: :room_color %>
+    <button onclick="myFunction()">Pick colour</button><input type="color" id="myColor">
+    <p id="demo"></p>
+    <script>
+    function myFunction() {
+        var x = document.getElementById("myColor").value;
+        document.getElementById("demo").innerHTML = x;
+    }
+    </script>
   </div>
-
+  <br>
   <div class="actions">
     <%= form.submit %>
   </div>
