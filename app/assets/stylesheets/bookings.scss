@@ -32,9 +32,13 @@ td {
   margin: -8px;
   padding: inherit;
   padding-bottom: 26px;
+  height: 50px;
 }
 .booking_description {
   margin: auto;
   max-width: 100px;
   background-color: white;
+  opacity: 0.9;
+  overflow: hidden;
+
 }
