@@ -25,9 +25,14 @@ div.navbar-nav {
 .week_table{
   table-layout: fixed;
 }
-td {
-  width: 2%;
+
+td.fth-header, th.fth-header,
+td.fth-footer, th.fth-footer {
+  border-top: none !important;
+border-bottom: 1px solid #ddd;
 }
+
+
 .booking_block {
   margin: -8px;
   padding: inherit;
