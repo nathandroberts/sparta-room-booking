@@ -13,8 +13,14 @@
 //= require jquery3
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
 //= require_tree .
 
 $(document).ready(function(){
-  
+
+  $('[data-toggle="popover"]').popover({
+    container: 'body'
+    
+  })
+
 })

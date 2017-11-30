@@ -97,13 +97,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Monday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[0] == booking.date) %>
-                  <div class="booking_block text-center"style="background-color: <%= room.color %>;">
                     <!-- Selects the booking start date row-->
+                    <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
-  
+                      <!-- Selects the booking start date row-->
+                          <!-- <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
+                          <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a> -->
                     <% end %>
-                    </div>
                   <% end %>
                 <% end %>
               </td>
@@ -168,15 +168,15 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Thursday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[3] == booking.date) %>
-                  <div class="booking_block text-center"style="background-color: <%= room.color %>;">
-                    <!-- Selects the booking start date row-->
-                    <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
-                        <p><%= booking.description %></p>
-                        <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
-                        <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-                      </div>
-                    <% end %>
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;">
+                      <!-- Selects the booking start date row-->
+                      <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
+                        <div class="booking_description">
+                          <p><%= booking.description %></p>
+                          <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
+                          <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+                        </div>
+                      <% end %>
                     </div>
                   <% end %>
                 <% end %>
