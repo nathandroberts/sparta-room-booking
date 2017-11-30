@@ -12,8 +12,25 @@
 <%= link_to " Current date |", start_date: current_date %>
 <%= link_to "Next", start_date: date_range.last + 1.week %>
 
-<h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
-<p>Week start date <%= start_date.beginning_of_week.day %>/<%= start_date.month %>/<%= start_date.year %></p>
+<div class="day_button">
+  <h2>Week start:
+    <% case start_date.day.to_i %>
+    <% when 1, 21, 31 %>
+      <%=start_date.beginning_of_week.day.to_s+"st" %>
+    <% when 2, 22 %>
+      <%=start_date.beginning_of_week.day.to_s+"nd" %>
+    <% when 3, 23%>
+      <%=start_date.beginning_of_week.day.to_s+"rd" %>
+    <% else %>
+      <%=start_date.beginning_of_week.day.to_s+"th" %>
+    <% end %>
+    <%= Date::MONTHNAMES[start_date.month] %>
+    <%= start_date.beginning_of_week.year %>
+    <%= link_to "| Previous |", start_date: start_date - 1.day %>
+    <%= link_to " Current date |", start_date: current_date %>
+    <%= link_to " Next |", start_date: start_date + 1.day %>
+  </h2>
+</div>
 <h1>Bookings</h1>
 <!--Rooms in a week table -->
 <table class="table table-bordered table-inverse">
