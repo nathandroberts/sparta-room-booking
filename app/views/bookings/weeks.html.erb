@@ -49,20 +49,21 @@
 </div>
 </div>
 <!--table for the time slots-->
-<div class="time_container">
-  <table class="table table-bordered table-inverse time_table">
-    <th class="time">Time</th>
-      <tbody>
-        <% @timeslots.each do |timeslot| %>
-          <tr class="time">
-            <td><%= timeslot.time_value.strftime("%H%M") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
-</div>
+<div class="row">
+  <div class="col-md-1" id="first_table">
+    <table class="table table-bordered table-inverse time_table">
+      <th>Time</th>
+        <tbody>
+          <% @timeslots.each do |timeslot| %>
+            <tr>
+              <td class="time"><%= timeslot.time_value.strftime("%H%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
 <!--Rooms in a week table -->
-<div class="second_table">
+<div class="col-md-11" id="second_table">
   <table class="table table-bordered table-inverse week_table">
     <thead>
       <tr>
@@ -100,10 +101,7 @@
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
                       <div class="booking_description">
-                        <p><%= booking.description %></p>
-                        <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
-                        <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-                      </div>
+  
                     <% end %>
                     </div>
                   <% end %>
@@ -126,9 +124,7 @@
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
                       <div class="booking_description">
-                        <p><%= booking.description %></p>
-                        <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
-                        <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+
                       </div>
                     <% end %>
                     </div>
@@ -152,9 +148,7 @@
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
                       <div class="booking_description">
-                        <p><%= booking.description %></p>
-                        <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
-                        <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+
                       </div>
                     <% end %>
                     </div>
@@ -271,4 +265,5 @@
       <% end %>
     </tbody>
   </table>
+</div>
 </div>

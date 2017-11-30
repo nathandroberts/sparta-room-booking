@@ -30,16 +30,27 @@ div.navbar-nav {
 td {
   width: 2%;
 }
+#first_table {
+  padding-right: 0;
+}
+#second_table {
+  padding-left: 0;
+}
 .time_container {
-  width:30px;
+  width:10px;
   display: inline-block;
+  margin:0;
 }
 .time_table {
-  width:30px;
+  width:10px;
+  margin:0;
+}
+.time {
+  height:51px;
 }
 .second_table {
   display: inline-block;
-  float:left;
+  margin:0;
 }
 .booking_block {
   margin: -8px;
