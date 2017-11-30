@@ -10,6 +10,7 @@ gem 'bootstrap-sass'
 gem 'time_difference'
 
 gem 'jquery-rails'
+gem 'bootstrap_colorpicker_rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
