@@ -20,7 +20,7 @@
     <% end %>
     <%= Date::MONTHNAMES[start_date.month] %>
     <%= start_date.year %>
-    <%= link_to "| Previous |", start_date: start_date - 1.day %>
+    <%= link_to "| Previous |", start_date: start_date - 1.day%>
     <%= link_to " Current date |", start_date: current_date %>
     <%= link_to " Next |", start_date: start_date + 1.day %>
   </h2>
