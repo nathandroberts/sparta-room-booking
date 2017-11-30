@@ -32,6 +32,23 @@
   </h2>
 </div>
 <h1>Bookings</h1>
+<!--New Booking Panel-->
+<div class="container">
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">New Booking</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= render 'form', booking: @booking %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <!--Rooms in a week table -->
 <table class="table table-bordered table-inverse">
   <thead>
