@@ -25,9 +25,9 @@
     <% end %>
     <%= Date::MONTHNAMES[start_date.month] %>
     <%= start_date.beginning_of_week.year %>
-    <%= link_to "| Previous |", start_date: start_date - 1.day %>
-    <%= link_to " Current date |", start_date: current_date %>
-    <%= link_to " Next |", start_date: start_date + 1.day %>
+    <%= link_to "| Previous |", start_date: start_date - 7.day %>
+    <%= link_to " Current Week |", start_date: current_date %>
+    <%= link_to " Next |", start_date: start_date + 7.day %>
   </h2>
 </div>
 <h1>Bookings</h1>
