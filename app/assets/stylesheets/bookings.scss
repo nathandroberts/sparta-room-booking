@@ -29,9 +29,9 @@ div.navbar-nav {
   table-layout: fixed;
 }
 
-td {
-  width: 2%;
-}
+// td {
+//   width: 2%;
+// }
 #first_table {
   padding-right: 0;
 }
@@ -66,4 +66,10 @@ td {
   background-color: white;
   opacity: 0.9;
   overflow: hidden;
+}
+
+#header-fixed {
+  position: fixed;
+  background-color: white;
+  // display: none;
 }
