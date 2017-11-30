@@ -26,13 +26,6 @@ div.navbar-nav {
   table-layout: fixed;
 }
 
-td.fth-header, th.fth-header,
-td.fth-footer, th.fth-footer {
-  border-top: none !important;
-border-bottom: 1px solid #ddd;
-}
-
-
 .booking_block {
   margin: -8px;
   padding: inherit;
@@ -47,6 +40,16 @@ border-bottom: 1px solid #ddd;
   overflow: hidden;
   z-index: auto;
 
+}
+
+thead#header {
+  position: fixed;
+}
+
+td {
+  position: relative;
+  // top: 100px;
+  // display: inline-block;
 }
 
 .stick {

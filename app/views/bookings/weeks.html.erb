@@ -55,11 +55,10 @@
 
 
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <!--Rooms in a week table -->
 <table class="table table-bordered table-inverse">
-  <tbody>
-    <thead>
+    <thead id="header" style="background-color:white; z-index:1;">
       <tr>
         <!-- Separates each day of current week -->
         <th>Time</th>
@@ -73,6 +72,7 @@
       </tr>
     </thead>
 
+    <tbody>
     <!-- Loop for Timeslot time_values created in seed file  -->
     <% @timeslots.each do |timeslot| %>
       <tr>
