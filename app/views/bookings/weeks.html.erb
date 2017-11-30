@@ -54,28 +54,18 @@
   <thead>
     <tr>
       <!-- Separates each day of current week -->
+      <th>Time</th>
       <% date_range.each_slice(7) do |week| %>
         <% week.each do |day| %>
         <!-- Table inputs created based on weekday -->
-          <th><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
+          <th colspan="<%= (@rooms.size).to_i %>"><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
           <!-- Blank cells created based room array size after the weekday is inputted -->
-          <% (@rooms.size).times do %>
-            <th></th>
-          <% end %>
         <% end %>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <!-- Rooms names outputted 7 times, once for each weekday -->
-      <% 7.times do %>
-        <th>Time</th>
-        <% @rooms.each do |room| %>
-          <th><%= room.name %></th>
-        <% end %>
-      <% end %>
-    </tr>
+    
     <!-- Loop for Timeslot time_values created in seed file  -->
     <% @timeslots.each do |timeslot| %>
       <tr>
@@ -111,8 +101,6 @@
             </td>
           <% end %>
           <!-- Tuesday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
@@ -139,8 +127,6 @@
             </td>
           <% end %>
           <!-- Wednesday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
@@ -167,8 +153,6 @@
             </td>
           <% end %>
           <!-- Thursday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
@@ -195,8 +179,6 @@
             </td>
           <% end %>
           <!-- Friday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
@@ -223,8 +205,6 @@
             </td>
           <% end %>
           <!-- Saturday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
@@ -251,8 +231,6 @@
             </td>
           <% end %>
           <!-- Sunday -->
-          <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-          <td><%= timeslot.time_value.strftime("%H%M") %></td>
           <!-- Loops through each of the rooms to create a blank table cell -->
           <% @rooms.each do |room| %>
             <td>
