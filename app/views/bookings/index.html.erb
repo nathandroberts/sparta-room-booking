@@ -6,11 +6,11 @@
 <% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Changes start_date value -->
 
-<div class="day_button">
+<div class="fixed_date"
   <%= link_to "Previous |", start_date: start_date - 1.day %>
   <%= link_to " Current date |", start_date: current_date %>
   <%= link_to " Next", start_date: start_date + 1.day %>
-</div>
+
 
 <!-- Date shown based on start_date -->
 <h1>Month: <%= Date::MONTHNAMES[start_date.month] %>  </h1>
