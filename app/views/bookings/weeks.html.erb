@@ -98,7 +98,10 @@
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Monday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[0] == booking.date) %>
                     <!-- Selects the booking start date row-->
-                    <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                      <a href="/bookings/<%= booking.id %>">
+                        <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                        </div>
+                      </a>
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
                       <!-- Selects the booking start date row-->
                     <% end %>
@@ -118,12 +121,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Tuesday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[1] == booking.date) %>
-                  <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
 
-                      </div>
                     <% end %>
                     </div>
                   <% end %>
@@ -142,12 +146,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Wednesday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[2] == booking.date) %>
-                  <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
 
-                      </div>
                     <% end %>
                     </div>
                   <% end %>
@@ -166,12 +171,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Thursday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[3] == booking.date) %>
-                    <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                       <!-- Selects the booking start date row-->
                       <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                        <div class="booking_description">
 
-                        </div>
                       <% end %>
                     </div>
                   <% end %>
@@ -190,12 +196,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Friday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[4] == booking.date) %>
-                  <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
 
-                      </div>
                     <% end %>
                     </div>
                   <% end %>
@@ -214,12 +221,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Saturday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[5] == booking.date) %>
-                  <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
 
-                      </div>
                     <% end %>
                     </div>
                   <% end %>
@@ -238,12 +246,13 @@
                   <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
                   <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the Sunday date -->
                   <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (week[6] == booking.date) %>
-                  <a href="#" data-toggle="popover" title="Booking" data-content="<%= booking.description %>" data-no-turbolink><div class="booking_block text-center"style="background-color: <%= room.color %>;"></div></a>
+                  <a href="/bookings/<%= booking.id %>">
+                    <div class="booking_block text-center"style="background-color: <%= room.color %>;" title="<%= booking.description %>" data-toggle="tooltip">
+                    </div>
+                  </a>
                     <!-- Selects the booking start date row-->
                     <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
-
-                      </div>
+    
                     <% end %>
                     </div>
                   <% end %>
