@@ -5,6 +5,9 @@
 <!-- Used to reset start date to current date. -->
 <% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Date shown based on start_date  and links to change start date value-->
+
+<div class="container">
+<div class=fixed>
 <div class="day_button">
   <h2>
     <%= start_date.strftime("%A") %>
@@ -44,13 +47,13 @@
 
 
 
-<div class="container">
 
-  <table class="table table-bordered table-inverse week_table">
+  <table class="table table-bordered table-inverse week_table" style="width:1143px;">
+  <col style="width:15%" span="1" />
 
   <thead>
     <tr>
-      <th>Time</th>
+      <th style="width:100px;">Time</th>
       <!-- Loop for each room's name to be inputted into table -->
       <% @rooms.each do |room| %>
       <th><%= room.name %></th>
@@ -60,8 +63,11 @@
   </table>
 
 
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
     <table class="table table-bordered table-inverse week_table">
+    <col style="width:15%" span="1" />
       <tbody>
         <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
         <% @timeslots.each do |timeslot| %>
