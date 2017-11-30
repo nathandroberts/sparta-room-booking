@@ -10,9 +10,9 @@
 div.navbar-nav {
   margin-top: 16px;
 }
-// .navbar {
-//   background-color:#01181b;
-// }
+.navbar {
+  background-color:#01181b;
+}
 .navbar-brand {
   color:white;
 }
@@ -21,4 +21,24 @@ div.navbar-nav {
 }
 .day_button {
   margin-top: 70px;
+}
+.week_table{
+  table-layout: fixed;
+}
+td {
+  width: 2%;
+}
+.booking_block {
+  margin: -8px;
+  padding: inherit;
+  padding-bottom: 26px;
+  height: 50px;
+}
+.booking_description {
+  margin: auto;
+  max-width: 100px;
+  background-color: white;
+  opacity: 0.9;
+  overflow: hidden;
+
 }
