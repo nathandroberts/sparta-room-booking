@@ -7,7 +7,7 @@
 
 <p>
   <strong>Color:</strong>
-  <%= @room.color %>
+  <p class="room_squares" style="background-color: <%= @room.color %>;"></p>
 </p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
