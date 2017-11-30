@@ -65,11 +65,11 @@
         <% @rooms.each do |room| %>
           <td>
             <!-- Loops through bookings -->
-            <% @bookings.each do |booking|  %>
+            <% @bookings.each do |booking| %>
               <!-- Booking start time -->
-              <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
+              <% t1 = Time.parse(booking.starttime.to_s) %>
               <!-- Booking end time-->
-              <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
+              <% t2 = Time.parse(booking.endtime.to_s) %>
               <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
               <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date)%>
               <div class="booking_block text-center"style="background-color: <%= room.color %>;">
