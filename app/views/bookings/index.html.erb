@@ -5,63 +5,66 @@
 <!-- Used to reset start date to current date. -->
 <% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Date shown based on start_date  and links to change start date value-->
-<div class="day_button">
-  <h2>
-    <%= start_date.strftime("%A") %>
-    <% case start_date.day.to_i %>
-    <% when 1, 21, 31 %>
-      <%=start_date.day.to_s+"st" %>
-    <% when 2, 22 %>
-      <%=start_date.day.to_s+"nd" %>
-    <% when 3, 23%>
-      <%=start_date.day.to_s+"rd" %>
-    <% else %>
-      <%=start_date.day.to_s+"th" %>
-    <% end %>
-    <%= Date::MONTHNAMES[start_date.month] %>
-    <%= start_date.year %>
-    <%= link_to "| Previous |", start_date: start_date - 1.day %>
-    <%= link_to " Current date |", start_date: current_date %>
-    <%= link_to " Next |", start_date: start_date + 1.day %>
-  </h2>
-  <div class="container">
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse1">New Booking</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">
-          <%= render 'form', booking: @booking %>
+<div class="stick">
+  <div class="day_button">
+    <h2>
+      <%= start_date.strftime("%A") %>
+      <% case start_date.day.to_i %>
+      <% when 1, 21, 31 %>
+        <%=start_date.day.to_s+"st" %>
+      <% when 2, 22 %>
+        <%=start_date.day.to_s+"nd" %>
+      <% when 3, 23%>
+        <%=start_date.day.to_s+"rd" %>
+      <% else %>
+        <%=start_date.day.to_s+"th" %>
+      <% end %>
+      <%= Date::MONTHNAMES[start_date.month] %>
+      <%= start_date.year %>
+      <%= link_to "| Previous |", start_date: start_date - 1.day %>
+      <%= link_to " Current date |", start_date: current_date %>
+      <%= link_to " Next |", start_date: start_date + 1.day %>
+    </h2>
+    <div class="container">
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapse1">New Booking</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%= render 'form', booking: @booking %>
+          </div>
         </div>
       </div>
     </div>
+   </div>
   </div>
- </div>
-</div>
+<table class="table table-bordered table-inverse week_table">
+  <div class="table table-bordered table-inverse week_table">
+  <thead>
+    <tr style="background-color:black; color:white;">
+      <th>
+          Time
+          <% @rooms.each do |room| %>
+          <th><%= room.name %></th>
+          <% end %>
 
+      </th>
+
+      <!-- Loop for each room's name to be inputted into table -->
+    </tr>
+  </thead>
+</div>
+</table>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!--Rooms on a day  -->
+<table class="table table-bordered table-inverse week_table">
 
-
-
-  <table class="table table-bordered table-inverse week_table" style="table-layout:fixed;">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <!-- Loop for each room's name to be inputted into table -->
-        <% @rooms.each do |room| %>
-        <th><%= room.name %></th>
-        <% end %>
-      </tr>
-    </thead>
-  </table>
-</div>
-<br><br><br><br><br><br><br><br>
-
-<table class="table table-bordered table-inverse week_table" style="table-layout: fixed;">
-  <tbody>
+  <tbody style="position:static">
     <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
     <% @timeslots.each do |timeslot| %>
       <tr>
