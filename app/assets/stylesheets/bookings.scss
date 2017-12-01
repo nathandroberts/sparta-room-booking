@@ -27,16 +27,11 @@ div.navbar-nav {
 }
 .week_table{
   table-layout: fixed;
-  // width: 97%;
 }
 
-// .correct {
-//   width: 97%;
-// }
-
-// td {
-//   width: 2%;
-// }
+td {
+  width: 2%;
+}
 #first_table {
   padding-right: 0;
 }
@@ -71,10 +66,4 @@ div.navbar-nav {
   background-color: white;
   opacity: 0.9;
   overflow: hidden;
-}
-
-.fixed {
-  position: fixed;
-  background-color: white;
-  z-index: 1;
 }
