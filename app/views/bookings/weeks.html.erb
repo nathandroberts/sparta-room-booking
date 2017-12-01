@@ -48,6 +48,20 @@
   </div>
 </div>
 </div>
+<table class=" static_days">
+  <thead>
+    <tr>
+      <!-- Separates each day of current week -->
+      <% date_range.each_slice(7) do |week| %>
+        <% week.each do |day| %>
+        <!-- Table inputs created based on weekday -->
+          <th colspan="<%= (@rooms.size).to_i %>"><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
+          <!-- Blank cells created based room array size after the weekday is inputted -->
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+</table>
 <!--table for the time slots-->
 <div class="row">
   <div class="col-md-1" id="first_table">
