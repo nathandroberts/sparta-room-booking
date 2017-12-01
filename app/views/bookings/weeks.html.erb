@@ -13,7 +13,7 @@
 <%= link_to "Next", start_date: date_range.last + 1.week %>
 <div class="day_button">
   <h2>Week start:
-    <% case start_date.day.to_i %>
+    <% case start_date.beginning_of_week.day.to_i %>
     <% when 1, 21, 31 %>
       <%=start_date.beginning_of_week.day.to_s+"st" %>
     <% when 2, 22 %>
@@ -23,11 +23,11 @@
     <% else %>
       <%=start_date.beginning_of_week.day.to_s+"th" %>
     <% end %>
-    <%= Date::MONTHNAMES[start_date.month] %>
+    <%= Date::MONTHNAMES[start_date.beginning_of_week.month] %>
     <%= start_date.beginning_of_week.year %>
-    <%= link_to "| Previous |", start_date: start_date - 7.day %>
-    <%= link_to " Current Week |", start_date: current_date %>
-    <%= link_to " Next |", start_date: start_date + 7.day %>
+    <%= link_to "Previous |", start_date: date_range.first - 1.week  %>
+    <%= link_to " Current date |", start_date: current_date %>
+    <%= link_to "Next", start_date: date_range.last + 1.week %>
   </h2>
 </div>
 <h1>Bookings</h1>
