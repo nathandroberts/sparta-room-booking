@@ -7,12 +7,12 @@
 
 <p>
   <strong>Starttime:</strong>
-  <%= @booking.starttime %>
+  <%= (@booking.starttime).strftime("%T").to_s %>
 </p>
 
 <p>
   <strong>Endtime:</strong>
-  <%= @booking.endtime %>
+  <%= (@booking.endtime).strftime("%T").to_s %>
 </p>
 
 <p>
