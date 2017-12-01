@@ -55,14 +55,18 @@
 <div class="row" style="width:1170px;">
   <div class="col-md-1" id="first_table">
     <table class="table table-bordered table-inverse time_table">
-        <col style="width:1%" span="1" />
-      <th style="width:100px;">Time</th>
     </table>
   </div>
   <div class="col-md-11" id="second_table">
   <table class="table table-bordered table-inverse week_table correct">
     <thead>
-
+      <tr>
+        <% (@rooms.size*7).times do %>
+          <td style="visibility: hidden; height: 0;"><div class="booking_block"></div></td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <!-- Separates each day of current week -->
         <% date_range.each_slice(7) do |week| %>
@@ -73,8 +77,7 @@
           <% end %>
         <% end %>
       </tr>
-    </thead>
-    <col style="width:5%" span="1" />
+    </tbody>
   </table>
   </div>
 </div>
@@ -102,19 +105,7 @@
 <!--Rooms in a week table -->
 <div class="col-md-11" id="second_table">
   <table class="table table-bordered table-inverse week_table">
-    <thead>
-      <tr>
-        <!-- Separates each day of current week -->
-        <% date_range.each_slice(7) do |week| %>
-          <% week.each do |day| %>
-          <!-- Table inputs created based on weekday -->
-            <th colspan="<%= (@rooms.size).to_i %>"><%= day.strftime("%A") %> <%= day.day %>/<%= day.month %></th>
-            <!-- Blank cells created based room array size after the weekday is inputted -->
-          <% end %>
-        <% end %>
-      </tr>
-    </thead>
-  <col style="width:5%" span="1" />
+  <!-- <col style="width:5%" span="1" /> -->
     <tbody>
       <!-- Loop for Timeslot time_values created in seed file  -->
       <% @timeslots.each do |timeslot| %>
