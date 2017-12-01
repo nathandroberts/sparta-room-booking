@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
-
+<br>
 <p class="add_top_margin">
   <strong>Name:</strong>
   <%= @room.name %>
 </p>
-
+<br>
 <p>
   <strong>Color:</strong>
-  <%= @room.color %>
+  <p class="room_squares" style="background-color: <%= @room.color %>;"></p>
 </p>
-
+<br>
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
