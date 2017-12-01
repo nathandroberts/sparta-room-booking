@@ -18,9 +18,10 @@
 
   <div class="field">
     <%= form.label :color %>
-    <%= form.text_field :color, id: :room_color %>
-  </div>
+    <%= form.color_field :color, id: :color, class: 'colorpicker' %>
 
+  </div>
+  <br>
   <div class="actions">
     <%= form.submit %>
   </div>

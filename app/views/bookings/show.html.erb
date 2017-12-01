@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<p class="add_top_margin">
   <strong>Date:</strong>
   <%= @booking.date %>
 </p>
 
 <p>
   <strong>Starttime:</strong>
-  <%= @booking.starttime %>
+  <%= (@booking.starttime).strftime("%T").to_s %>
 </p>
 
 <p>
   <strong>Endtime:</strong>
-  <%= @booking.endtime %>
+  <%= (@booking.endtime).strftime("%T").to_s %>
 </p>
 
 <p>
@@ -31,4 +31,5 @@
 </p>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Delete', booking_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', bookings_path %>

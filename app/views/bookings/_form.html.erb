@@ -18,12 +18,13 @@
 
   <div class="field">
     <%= form.label :starttime %>
-    <%= form.time_select :starttime, id: :booking_starttime %>
+    <!-- <%= form.time_select :starttime, id: :booking_starttime %> -->
+    <%= form.time_select :starttime, {:minute_step => 15} %>
   </div>
 
   <div class="field">
     <%= form.label :endtime %>
-    <%= form.time_select :endtime, id: :booking_endtime %>
+    <%= form.time_select :endtime, {:minute_step => 15} %>
   </div>
 
   <div class="field">
@@ -31,10 +32,10 @@
     <%= form.text_area :description, id: :booking_description %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= form.label :color %>
     <%= form.text_field :color, id: :booking_color %>
-  </div>
+  </div> -->
 
   <div class="field">
     <%= form.label :room_id %>

@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+    @rooms = Room.all
   end
 
   def weeks
@@ -34,6 +35,7 @@ class BookingsController < ApplicationController
   # GET /bookings/1/edit
   def edit
     @rooms = Room.all
+    session[:return_to] ||= request.referer
   end
 
   # POST /bookings
