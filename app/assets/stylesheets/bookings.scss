@@ -67,3 +67,19 @@ td {
   opacity: 0.9;
   overflow: hidden;
 }
+
+.static_days {
+  margin-left: 84px;
+/* width: 500px; */
+position: fixed;
+background: rgb(226, 226, 226);
+z-index: 100;
+}
+
+.static_days th {
+  padding-top: 9px;
+padding-bottom: 9px;
+padding-left: 6px;
+width: 151px;
+
+}
