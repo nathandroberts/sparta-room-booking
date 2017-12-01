@@ -5,9 +5,6 @@
 <!-- Used to reset start date to current date. -->
 <% current_date = params.fetch(:current_date, Date.today).to_date %>
 <!-- Date shown based on start_date  and links to change start date value-->
-
-<div class="container">
-<div class=fixed>
 <div class="day_button">
   <h2>
     <%= start_date.strftime("%A") %>
@@ -44,64 +41,51 @@
   </div>
  </div>
 
-
-
-
-  <table class="table table-bordered table-inverse week_table" style="width:1143px;">
-  <!-- <col style="width:15%" span="1" /> -->
-
+<!--Rooms on a day  -->
+<table class="table table-bordered table-inverse week_table">
   <thead>
     <tr>
-      <th style="width:100px;">Time</th>
+      <th>Time</th>
       <!-- Loop for each room's name to be inputted into table -->
       <% @rooms.each do |room| %>
-      <th><%= room.name %></th>
+        <th><%= room.name %></th>
       <% end %>
     </tr>
   </thead>
-  </table>
-
-
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-    <table class="table table-bordered table-inverse week_table">
-    <!-- <col style="width:15%" span="1" /> -->
-      <tbody>
-        <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
-        <% @timeslots.each do |timeslot| %>
-          <tr>
-            <!-- Value for time stored in current row -->
-            <% time_column = timeslot.time_value.strftime("%H%M") %>
-            <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
-            <td><%= timeslot.time_value.strftime("%H%M") %></td>
-            <!-- Loops through each of the rooms to create a blank table cell -->
-            <% @rooms.each do |room| %>
-              <td>
-                <!-- Loops through bookings -->
-                <% @bookings.each do |booking|  %>
-                  <!-- Booking start time -->
-                  <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
-                  <!-- Booking end time-->
-                  <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
-                  <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
-                  <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date)%>
-                  <div class="booking_block text-center"style="background-color: <%= room.color %>;">
-                    <!-- Selects the booking start date row-->
-                    <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
-                      <div class="booking_description">
-                        <p><%= booking.description %></p>
-                        <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
-                        <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-                      </div>
-                    <% end %>
-                    </div>
-                  <% end %>
+  <tbody>
+    <!-- Loop for Timeslot time_values created in seed file to create new table rows -->
+    <% @timeslots.each do |timeslot| %>
+      <tr>
+        <!-- Value for time stored in current row -->
+        <% time_column = timeslot.time_value.strftime("%H%M") %>
+        <!-- Timeslot time value in hhmm format eg 0900 for 9am -->
+        <td><%= timeslot.time_value.strftime("%H%M") %></td>
+        <!-- Loops through each of the rooms to create a blank table cell -->
+        <% @rooms.each do |room| %>
+          <td>
+            <!-- Loops through bookings -->
+            <% @bookings.each do |booking|  %>
+              <!-- Booking start time -->
+              <% t1 = Time.parse(booking.starttime.strftime("%T").to_s) %>
+              <!-- Booking end time-->
+              <% t2 = Time.parse(booking.endtime.strftime("%T").to_s) %>
+              <!-- Checks if column time value is between a bookings start and end time, only fills cell if the room id matches the booking room_id and booking date matches the start_date -->
+              <% if ((t1..t2).include? Time.parse(timeslot.time_value.strftime("%T").to_s)) == true && (room.id == booking.room_id) && (start_date == booking.date)%>
+              <div class="booking_block text-center"style="background-color: <%= room.color %>;">
+                <!-- Selects the booking start date row-->
+                <% if t1 == Time.parse(timeslot.time_value.strftime("%T").to_s) %>
+                  <div class="booking_description">
+                    <p><%= booking.description %></p>
+                    <a><%= link_to 'Edit', edit_booking_path(booking) %></a>
+                    <a><%= link_to 'Delete', booking, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+                  </div>
                 <% end %>
-              </td>
+                </div>
+              <% end %>
             <% end %>
-          </tr>
+          </td>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

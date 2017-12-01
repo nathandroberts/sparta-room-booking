@@ -27,16 +27,11 @@ div.navbar-nav {
 }
 .week_table{
   table-layout: fixed;
-  // width: 97%;
 }
 
-// .correct {
-//   width: 97%;
-// }
-
-// td {
-//   width: 2%;
-// }
+td {
+  width: 2%;
+}
 #first_table {
   padding-right: 0;
 }
@@ -73,8 +68,18 @@ div.navbar-nav {
   overflow: hidden;
 }
 
-.fixed {
-  position: fixed;
-  background-color: white;
-  z-index: 1;
+.static_days {
+  margin-left: 84px;
+/* width: 500px; */
+position: fixed;
+background: rgb(226, 226, 226);
+z-index: 100;
+}
+
+.static_days th {
+  padding-top: 9px;
+padding-bottom: 9px;
+padding-left: 6px;
+width: 151px;
+
 }
