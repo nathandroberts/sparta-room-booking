@@ -11,6 +11,9 @@
 <%= link_to "Previous |", start_date: date_range.first - 1.week %>
 <%= link_to " Current date |", start_date: current_date %>
 <%= link_to "Next", start_date: date_range.last + 1.week %>
+
+<div class=container>
+  <div class="fixed">
 <div class="day_button">
   <h2>Week start:
     <% case start_date.beginning_of_week.day.to_i %>
@@ -48,24 +51,22 @@
   </div>
 </div>
 </div>
-<!--table for the time slots-->
-<div class="row">
+
+<div class="row" style="width:1170px;">
   <div class="col-md-1" id="first_table">
     <table class="table table-bordered table-inverse time_table">
-      <th>Time</th>
-        <tbody>
-          <% @timeslots.each do |timeslot| %>
-            <tr>
-              <td class="time"><%= timeslot.time_value.strftime("%H%M") %></td>
-            </tr>
-          <% end %>
-        </tbody>
     </table>
   </div>
-<!--Rooms in a week table -->
-<div class="col-md-11" id="second_table">
-  <table class="table table-bordered table-inverse week_table">
+  <div class="col-md-11" id="second_table">
+  <table class="table table-bordered table-inverse week_table correct">
     <thead>
+      <tr>
+        <% (@rooms.size*7).times do %>
+          <td style="visibility: hidden; height: 0;"><div class="booking_block"></div></td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
       <tr>
         <!-- Separates each day of current week -->
         <% date_range.each_slice(7) do |week| %>
@@ -76,7 +77,35 @@
           <% end %>
         <% end %>
       </tr>
-    </thead>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<!--table for the time slots-->
+<div class="row">
+  <div class="col-md-1" id="first_table">
+    <table class="table table-bordered table-inverse time_table">
+      <!-- <th>Time</th> -->
+        <tbody>
+          <% @timeslots.each do |timeslot| %>
+            <tr>
+              <td class="time"><%= timeslot.time_value.strftime("%H%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+
+<!--Rooms in a week table -->
+<div class="col-md-11" id="second_table">
+  <table class="table table-bordered table-inverse week_table">
+  <!-- <col style="width:5%" span="1" /> -->
     <tbody>
       <!-- Loop for Timeslot time_values created in seed file  -->
       <% @timeslots.each do |timeslot| %>
@@ -266,5 +295,6 @@
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
 </div>
